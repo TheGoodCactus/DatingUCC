@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "889681772018",
+    "firebase_url": "https://cactus-d59de.firebaseio.com",
+    "project_id": "cactus-d59de",
+    "storage_bucket": "cactus-d59de.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:889681772018:android:d660dbac995857583f7f6b",
+        "android_client_info": {
+          "package_name": "com.cactus.datingucc"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "889681772018-92srkdnl6q68jtndoflangfun3uos9n7.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.cactus.datingucc",
+            "certificate_hash": "2d7746ac5401c9d744e39d7bdf7c60f674d54bcc"
+          }
+        },
+        {
+          "client_id": "889681772018-krnbrtqukgp07d6pb7evpelandcbe4rp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyADIIwAVkzdeBRvGPT-wLlbf-kL0M0_RbA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "889681772018-krnbrtqukgp07d6pb7evpelandcbe4rp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
