@@ -47,7 +47,7 @@ class LoginActivity : AppCompatActivity() {
         }
     }
     private fun PreformLogin() {
-        val email = login_username.text.toString()
+        val email = login_email.text.toString()
         val pass = login_password.text.toString()
 
         Log.d("RegisterActivity", "Username is:$email")
