@@ -17,6 +17,7 @@ import android.widget.EditText
 import android.widget.ProgressBar
 import android.widget.Toast
 import com.cactus.datingucc.ForgotPassword
+import com.cactus.datingucc.MainActivity
 
 import com.cactus.datingucc.R
 import com.google.firebase.auth.FirebaseAuth
@@ -68,6 +69,12 @@ class LoginActivity : AppCompatActivity() {
 
                 // else if successful
                 Log.d("RegisterActivity", "Successfully signed in user with uid: ${it.result?.user?.uid}")
+                //SavedPreferences logged in = true
+                val editor = getSharedPreferences("LoggedIn", 0).edit()
+                editor.putBoolean("LoggedIn", true)
+                editor.apply()
+                val intent = Intent(this, MainActivity::class.java)
+                startActivity(intent)
             }
             .addOnFailureListener{
                 Log.d("RegisterActivity", "Failed to sign user in: ${it.message}")

@@ -86,8 +86,13 @@ class RegisterActivity2 : AppCompatActivity() {
         ref.setValue(user)
             .addOnSuccessListener {
                 Log.d("RegisterActivity","Save user data")
+                //SavedPreferences logged in = true
+                val editor = getSharedPreferences("LoggedIn", 0).edit()
+                editor.putBoolean("LoggedIn", true)
+                editor.apply()
                 val intent = Intent(this, MainActivity::class.java)
                 startActivity(intent)
+
             }
             .addOnFailureListener {
                 Log.d("RegisterActivity", "Failed to save users data")

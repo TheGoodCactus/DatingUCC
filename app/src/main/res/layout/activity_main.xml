@@ -7,22 +7,14 @@
     tools:context=".MainActivity">
 
     <TextView
-        android:layout_width="143dp"
+        android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:text="Light work gentlemen"
+        android:gravity="center"
+        android:text="@string/app_name"
+        android:textSize="36sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/startregisteractivity"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="144dp"
-        android:text="This is a button"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

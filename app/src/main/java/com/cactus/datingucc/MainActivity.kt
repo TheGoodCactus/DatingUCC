@@ -13,10 +13,15 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        startregisteractivity.setOnClickListener {
-            Log.d("RegisterActivity", "Try to show register Activity" )
+        val prefName = "LoggedIn"
+        val sharedPref = getSharedPreferences(prefName, 0)
+        if (sharedPref.getBoolean(prefName, false)){
+            val intent = Intent(this, HomeActivity::class.java)
+            startActivity(intent)
+        } else {
             val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
         }
     }
 }
+
