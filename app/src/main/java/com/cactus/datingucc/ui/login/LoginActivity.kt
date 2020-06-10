@@ -1,17 +1,25 @@
 package com.cactus.datingucc.ui.login
 
+import android.app.Activity
 import android.content.Intent
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
+import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
+import android.view.View
+import android.view.inputmethod.EditorInfo
+import android.widget.Button
+import android.widget.EditText
+import android.widget.ProgressBar
 import android.widget.Toast
 import com.cactus.datingucc.ForgotPassword
-import com.cactus.datingucc.MainActivity
 
 import com.cactus.datingucc.R
-import com.cactus.datingucc.RegisterActivity2
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_login.*
 
 class LoginActivity : AppCompatActivity() {
@@ -34,12 +42,12 @@ class LoginActivity : AppCompatActivity() {
             startActivity(intent)
         }
         login_forgotpassword.setOnClickListener {
-            val intent2 = Intent(this, ForgotPassword::class.java)
+            var intent2 = Intent(this, ForgotPassword::class.java)
             startActivity(intent2)
         }
     }
     private fun PreformLogin() {
-        val email = login_email.text.toString()
+        val email = login_username.text.toString()
         val pass = login_password.text.toString()
 
         Log.d("RegisterActivity", "Username is:$email")
@@ -60,30 +68,6 @@ class LoginActivity : AppCompatActivity() {
 
                 // else if successful
                 Log.d("RegisterActivity", "Successfully signed in user with uid: ${it.result?.user?.uid}")
-                val currentFirebaseUser = FirebaseAuth.getInstance().currentUser
-                val ref: DatabaseReference = FirebaseDatabase.getInstance().reference.child("users").child("${currentFirebaseUser?.uid}").child("registered")
-                // Read from the database
-                ref.addValueEventListener(object : ValueEventListener {
-                    override fun onDataChange(dataSnapshot: DataSnapshot) {
-                        // This method is called once with the initial value and again
-                        // whenever data at this location is updated.
-                        val value = dataSnapshot.value
-                        Log.d("TAG", "Value is: $value")
-                        if (value == false){
-                            val intent = Intent(this@LoginActivity, RegisterActivity2::class.java)
-                            startActivity(intent)
-                        }
-                        else {
-                            val intent = Intent(this@LoginActivity, MainActivity::class.java)
-                            startActivity(intent)
-                        }
-                    }
-
-                    override fun onCancelled(error: DatabaseError) {
-                        // Failed to read value
-                        Log.d("TAG", "Failed to read value.", error.toException())
-                    }
-                })
             }
             .addOnFailureListener{
                 Log.d("RegisterActivity", "Failed to sign user in: ${it.message}")
