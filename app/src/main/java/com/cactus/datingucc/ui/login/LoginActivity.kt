@@ -43,6 +43,7 @@ class LoginActivity : AppCompatActivity() {
         }
         login_forgotpassword.setOnClickListener {
             var intent2 = Intent(this, ForgotPassword::class.java)
+            startActivity(intent2)
         }
     }
     private fun PreformLogin() {

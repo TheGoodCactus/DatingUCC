@@ -38,8 +38,11 @@ class ForgotPassword : AppCompatActivity() {
         .addOnFailureListener{
             // error, log + pop up message
             Log.d("ForgotPasswordActivity", "Failed to send recovery email to: ${email}")
-            Toast.makeText(this, it, Toast.LENGTH_LONG).show()
-
+            Toast.makeText(
+                this,
+                "Error: ${it}",
+                Toast.LENGTH_LONG
+            ).show()
         }
     }
 }
