@@ -21,4 +21,16 @@
     <string name="forgotton_password">Forgotten Password?</string>
     <string name="enter_email">Enter Email</string>
     <string name="send_email">SEND EMAIL</string>
+    <string name="password2">Password</string>
+    <string name="please_enter_bio">Please Enter Bio</string>
+    <string name="name">Name:</string>
+    <string name="enter_name">Enter Name</string>
+    <string name="please_enter_age">Please enter age</string>
+    <string name="age">Age:</string>
+    <string name="bio">Bio:</string>
+    <string name="please_enter_course">Please enter course</string>
+    <string name="course">Course:</string>
+    <string name="location">Location:</string>
+    <string name="enter_where_your_from">Enter where your from</string>
+    <string name="finish_register">Finish Register</string>
 </resources>

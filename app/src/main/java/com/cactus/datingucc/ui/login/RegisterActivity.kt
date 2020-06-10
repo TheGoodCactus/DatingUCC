@@ -21,6 +21,7 @@ import android.widget.ProgressBar
 import android.widget.Toast
 
 import com.cactus.datingucc.R
+import com.cactus.datingucc.RegisterActivity2
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
@@ -120,13 +121,19 @@ class RegisterActivity : AppCompatActivity() {
             }
     }
     private fun saveUsertoFirebaseDatabase(Profileimguri: String){
+        Log.d("register", "Ran Save user function")
         val uid = FirebaseAuth.getInstance().uid ?: ""
+        Log.d("register", "got uid")
         val ref = FirebaseDatabase.getInstance().getReference("/users/$uid")
-        val user = User(uid, register_username.toString(), Profileimguri)
-
+        val registered = false
+        Log.d("register", "got u334id")
+        val user = User(uid, register_username.text.toString(), Profileimguri, registered)
+        Log.d("register", "got u3434434334id")
         ref.setValue(user)
             .addOnSuccessListener {
                 Log.d("RegisterActivity","Save user data")
+                val intent = Intent(this, RegisterActivity2::class.java)
+                startActivity(intent)
             }
             .addOnFailureListener {
                 Log.d("RegisterActivity", "Failed to save users data")
@@ -134,7 +141,7 @@ class RegisterActivity : AppCompatActivity() {
 
     }
 }
-class User(val uid: String, val username: String, val Profileimguri: String)
+class User(val uid: String, val username: String, val Profileimguri: String, val registered: Boolean)
 
 
 
