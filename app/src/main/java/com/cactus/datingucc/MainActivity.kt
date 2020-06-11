@@ -3,10 +3,8 @@ package com.cactus.datingucc
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
+import com.cactus.datingucc.Home.HomeActivity
 import com.cactus.datingucc.ui.login.LoginActivity
-import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.activity_register.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -19,6 +17,7 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, HomeActivity::class.java)
             startActivity(intent)
         } else {
+            //If someone isn't logged in
             val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
         }

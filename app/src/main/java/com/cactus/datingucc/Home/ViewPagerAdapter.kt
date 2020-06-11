@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.cactus.datingucc.R
 import com.cactus.datingucc.User
+import com.google.firebase.storage.FirebaseStorage
 import kotlinx.android.synthetic.main.home_layout_item.view.*
 
 class ViewPagerAdapter (val user: List<User>) : RecyclerView.Adapter<ViewPagerAdapter.ViewPagerViewHolder>() {
@@ -23,8 +24,10 @@ class ViewPagerAdapter (val user: List<User>) : RecyclerView.Adapter<ViewPagerAd
 
     override fun onBindViewHolder(holder: ViewPagerViewHolder, position: Int) {
         val usr = user[position]
+        val storage = FirebaseStorage.getInstance()
+        val imgRef = storage.getReferenceFromUrl(usr.Profileimguri)
         Glide.with(holder.itemView.getContext())
-            .load(usr.Profileimguri)
+            .load(imgRef)
             .centerCrop()
             .placeholder(R.drawable.applelogo)
             .skipMemoryCache(true)
