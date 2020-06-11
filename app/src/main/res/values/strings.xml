@@ -33,4 +33,5 @@
     <string name="location">Location:</string>
     <string name="enter_where_your_from">Enter where your from</string>
     <string name="finish_register">Finish Register</string>
+    <string name="image_description">User Photo</string>
 </resources>
