@@ -18,10 +18,14 @@ import com.google.firebase.database.*
 import com.google.firebase.database.ktx.getValue
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.ktx.firestore
 import kotlinx.android.synthetic.main.activity_register.*
 import kotlinx.android.synthetic.main.activity_register.register_photobutton
 import kotlinx.android.synthetic.main.activity_register2.*
 import java.util.*
+import kotlin.collections.HashMap
+import kotlin.collections.HashSet
 
 
 class RegisterActivity2 : AppCompatActivity() {
@@ -80,23 +84,32 @@ class RegisterActivity2 : AppCompatActivity() {
             }
     }
 
-    private fun appendToUserData(user: NewInfo) {
-        val uid = FirebaseAuth.getInstance().currentUser?.uid
-        val ref = FirebaseDatabase.getInstance().getReference("/users/$uid")
-        ref.setValue(user)
-            .addOnSuccessListener {
-                Log.d("RegisterActivity","Save user data")
-                //SavedPreferences logged in = true
-                val editor = getSharedPreferences("LoggedIn", 0).edit()
-                editor.putBoolean("LoggedIn", true)
-                editor.apply()
-                val intent = Intent(this, MainActivity::class.java)
-                startActivity(intent)
-
+    private fun appendToUserData(user: Any) {
+        val db = Firebase.firestore
+        db.collection("users").document(FirebaseAuth.getInstance().currentUser?.uid.toString())
+            .set(user)
+            .addOnSuccessListener { documentReference ->
+                Log.d("Register", "DocumentSnapshot added with ID: $documentReference")
             }
-            .addOnFailureListener {
-                Log.d("RegisterActivity", "Failed to save users data")
+            .addOnFailureListener { e ->
+                Log.w("Register" ,"Error adding document", e)
             }
+//        val uid = FirebaseAuth.getInstance().currentUser?.uid
+//        val ref = FirebaseDatabase.getInstance().getReference("/users/$uid")
+//        ref.setValue(user)
+//            .addOnSuccessListener {
+//                Log.d("RegisterActivity","Save user data")
+//                //SavedPreferences logged in = true
+//                val editor = getSharedPreferences("LoggedIn", 0).edit()
+//                editor.putBoolean("LoggedIn", true)
+//                editor.apply()
+//                val intent = Intent(this, MainActivity::class.java)
+//                startActivity(intent)
+//
+//            }
+//            .addOnFailureListener {
+//                Log.d("RegisterActivity", "Failed to save users data")
+//            }
     }
     private fun getData(profileuri: String){
         val currentFirebaseUser = FirebaseAuth.getInstance().currentUser?.uid
@@ -122,7 +135,16 @@ class RegisterActivity2 : AppCompatActivity() {
             val course = register_course.text.toString()
             val location = register_location.text.toString()
             Log.d("Register","$username")
-            val user = NewInfo(uid as String, username as String, register as Boolean, bio, age, name, course, location, profileuri)
+            val user = hashMapOf(
+                "uid" to "$uid",
+                "register" to true,
+                "name" to name,
+                "bio" to bio,
+                "age" to age,
+                "course" to course,
+                "location" to location
+            )
+            //NewInfo(uid as String, username as String, register as Boolean, bio, age, name, course, location, profileuri)
             appendToUserData(user)
 
         }
